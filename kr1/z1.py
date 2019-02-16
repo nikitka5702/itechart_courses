@@ -1,11 +1,11 @@
 LogItem = collections.namedtuple('LogItem', 'name args kwargs result')
 
 
-def loghelper(func_name, f):
+def loghelper(f):
     def wrapped(*args, **kwargs):
-        self = args[0]
+        self, *fargs = args
         result = f(*args, **kwargs)
-        self.log.append(LogItem(func_name, list(args[1:]), kwargs, result))
+        self.log.append(LogItem(f.__name__, fargs, kwargs, result))
         return result
     return wrapped
 
@@ -19,7 +19,7 @@ class Logger(type):
         newattrs = {}
         for attrname, attrvalue in attrs.items():
             if isinstance(attrvalue, types.FunctionType) and not attrname.startswith('_'):
-                newattrs[attrname] = loghelper(attrname, attrvalue)
+                newattrs[attrname] = loghelper(attrvalue)
             else:
                 newattrs[attrname] = attrvalue
         newattrs['LogItem'] = LogItem
