@@ -1,11 +1,11 @@
 LogItem = collections.namedtuple('LogItem', 'name args kwargs result')
 
 
-def loghelper(func_name, f):
+def loghelper(f):
     def wrapped(*args, **kwargs):
-        self = args[0]
+        self, *fargs = args
         result = f(*args, **kwargs)
-        self.log.append(LogItem(func_name, list(args[1:]), kwargs, result))
+        self.log.append(LogItem(f.__name__, fargs, kwargs, result))
         return result
     return wrapped
 
