@@ -10,7 +10,7 @@ class SQLManager:
         with self.conn.cursor() as curs:
             curs.execute(
                 "create table shops(id int primary key, name varchar(255) not null, address varchar(255), staff_amount int not null);"
-                "create table departments(id int primary key, sphere int not null, staff_amount int not null, shop_id int references shops(id));"
+                "create table departments(id int primary key, sphere varchar(255) not null, staff_amount int not null, shop_id int references shops(id));"
                 "create table items(id int primary key, description text, price int not null, department_id int references departments(id));"
             )
     
