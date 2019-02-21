@@ -9,8 +9,7 @@ import scrapy
 
 
 def serialize_temperature(value):
-    val, = value
-    return val.replace('−', '-')
+    return value[0].replace('−', '-')
 
 
 class YandexWeatherItem(scrapy.Item):
