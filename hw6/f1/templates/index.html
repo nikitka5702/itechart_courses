@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            Currency Converter
+        </div>
+        <div class="row justify-content-center">
+            <div class="jumbotron">
+                <form>
+                    <div class="row justify-content-center">
+                        <div class="col">
+                            <select id="from" class="form-control">
+                                {% for currency in currencies %}
+                                    <option value="{{ currency }}"{% if currency == default_from %}selected{% endif %}>{{ currency }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col">
+                            <input id="from_val" type="number" class="form-control" min="0">
+                        </div>
+                        <div class="col" align="center">
+                            <button id="swap" class="btn btn-secondary" class="form-control"><i class="fas fa-sync"></i></button>
+                        </div>
+                        <div class="col">
+                            <input id="to_val" type="number" class="form-control" disabled>
+                        </div>
+                        <div class="col">
+                            <select id="to" class="form-control">
+                                {% for currency in currencies %}
+                                    <option value="{{ currency }}"{% if currency == default_to %}selected{% endif %}>{{ currency }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <button id="convert" class="btn btn-primary" type="submit">Convert</button>
+                        <button id="clear" class="btn btn-secondary">Clear</button>
+                        <button id="refresh" class="btn btn-secondary">Refresh</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="refreshModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Refresh</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Refreshed Succesfully!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    <script>
+        $("#convert").click(function (e) {
+            e.preventDefault();
+            convert();
+        });
+
+        $('#swap').click(function (e) {
+            e.preventDefault();
+            var temp = $('#from').val();
+            $('#from').val($('#to').val());
+            $('#to').val(temp);
+            if ($('#from_val').val()) {
+                convert();
+            }
+        });
+
+        $('#clear').click(function (e) {
+            e.preventDefault();
+            $('#from_val').val('');
+            $('#to_val').val('');
+        });
+
+        $('#refresh').click(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: '/refresh',
+                type: 'POST',
+                success: function (data) {
+                    $('#refreshModal').modal();
+                    console.log('Refreshed Succesfully');
+                }
+            })
+        });
+
+        function convert() {
+            var value = $('#from_val').val().replace(',', '.');
+            if (value) {
+                $('#from_val').css('border', '');
+                data = {
+                    'from': {
+                        'cur': $('#from').val(),
+                        'val': parseFloat(value)
+                    },
+                    'to': $('#to').val()
+                }
+    
+                $.ajax({
+                    url: '/convert',
+                    type: 'POST',
+                    data: JSON.stringify(data),
+                    contentType: "application/json",
+                    success: function (data) {
+                        $('#to_val').val(data.val);
+                    }
+                });
+            } else {
+                $('#from_val').css('border', '2px solid red');
+            }
+        }
+    </script>
+</body>
+</html>
