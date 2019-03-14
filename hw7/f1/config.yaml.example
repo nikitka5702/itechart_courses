@@ -1,0 +1,8 @@
+PGSQL_NAME: ''
+PGSQL_USER: ''
+PGSQL_PWD: ''
+PGSQL_HOST: 'localhost'
+PGSQL_PORT: ''
+
+DEBUG: True
+SECRET: ''

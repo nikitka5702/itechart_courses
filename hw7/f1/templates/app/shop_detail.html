@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+
+    <h1>{{ object.name }}</h1>
+    <p>
+        Address: {{ object.address }}<br>
+        Staff: {{ object.staff_amount }}<br>
+    </p>
+    {% for department in object.departments.all reversed %}
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="4"><h3>{{ department }}</h3></th>
+                </tr>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in department.items.all reversed %}
+                    <tr{% if item.is_sold %} style="background: silver;"{% endif %}>
+                        <th scope="row">{{ item.name }}</th>
+                        <td>{{ item.description }}</td>
+                        <td>{{ item.price }}</td>
+                        <td>
+                            {% for comment in item.comments %}
+                                {{ comment }}<br>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+    {% endfor %}
+{% endblock %}

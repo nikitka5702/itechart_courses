@@ -58,7 +58,7 @@ class Message(Base):
         return {'text': self.text, 'posted_at': self.posted_at.strftime('%d %b %Y %H:%M:%S'), 'author': self.user.username}
 
 
-engine = create_engine('postgresql+psycopg2://postgres:root@localhost/test')
+engine = create_engine('postgresql+psycopg2://postgres@localhost/test')
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 
