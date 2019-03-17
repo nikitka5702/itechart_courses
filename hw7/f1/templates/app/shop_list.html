@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+
+    <h1><a href="{% url 'index' %}">Shops</a></h1>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Shop</th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for shop in object_list %}
+                <tr>
+                    <th><a href="{% url 'shop' shop.pk %}">{{ shop }}</a></th>
+                    <td>
+                        <button><a href="{% url 'shop-update' shop.pk %}">Update</a></button>
+                    </td>
+                    <td>
+                        <button><a href="{% url 'shop-delete' shop.pk %}">Delete</a></button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

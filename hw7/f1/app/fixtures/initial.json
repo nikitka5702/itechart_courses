@@ -1,0 +1,227 @@
+[
+  {
+    "model": "app.shop",
+    "pk": 1,
+    "fields": {
+      "name": "Ikea",
+      "address": "Minsk",
+      "staff_amount": 600
+    }
+  },
+  {
+    "model": "app.shop",
+    "pk": 2,
+    "fields": {
+      "name": "Tesla",
+      "address": "Moscow",
+      "staff_amount": 400
+    }
+  },
+  {
+    "model": "app.shop",
+    "pk": 3,
+    "fields": {
+      "name": "Flea Market",
+      "address": "Bucharest",
+      "staff_amount": 1600
+    }
+  },
+  {
+    "model": "app.department",
+    "pk": 1,
+    "fields": {
+      "sphere": "Sphere1",
+      "staff_amount": 400,
+      "shop": 1
+    }
+  },
+  {
+    "model": "app.department",
+    "pk": 2,
+    "fields": {
+      "sphere": "Sphere2",
+      "staff_amount": 250,
+      "shop": 1
+    }
+  },
+  {
+    "model": "app.department",
+    "pk": 3,
+    "fields": {
+      "sphere": "Sphere1",
+      "staff_amount": 300,
+      "shop": 2
+    }
+  },
+  {
+    "model": "app.department",
+    "pk": 4,
+    "fields": {
+      "sphere": "Sphere2",
+      "staff_amount": 100,
+      "shop": 2
+    }
+  },
+  {
+    "model": "app.department",
+    "pk": 5,
+    "fields": {
+      "sphere": "Sphere1",
+      "staff_amount": 800,
+      "shop": 3
+    }
+  },
+  {
+    "model": "app.department",
+    "pk": 6,
+    "fields": {
+      "sphere": "Sphere2",
+      "staff_amount": 800,
+      "shop": 3
+    }
+  },
+  {
+    "model": "app.item",
+    "pk": 1,
+    "fields": {
+      "name": "Table",
+      "description": "Simple table",
+      "price": 1200,
+      "is_sold": false,
+      "comments": "[\"plain table\", \"plain wood\", \"simple design\"]",
+      "department": 1
+    }
+  },
+  {
+    "model": "app.item",
+    "pk": 2,
+    "fields": {
+      "name": "Chair",
+      "description": "Chair",
+      "price": 410,
+      "is_sold": false,
+      "comments": "[\"expensive chair\", \"wooden\"]",
+      "department": 1
+    }
+  },
+  {
+    "model": "app.item",
+    "pk": 3,
+    "fields": {
+      "name": "Sink",
+      "description": "Sink",
+      "price": 950,
+      "is_sold": false,
+      "comments": "[]",
+      "department": 1
+    }
+  },
+  {
+    "model": "app.item",
+    "pk": 4,
+    "fields": {
+      "name": "Car",
+      "description": "Car",
+      "price": 2500,
+      "is_sold": false,
+      "comments": "[]",
+      "department": 3
+    }
+  },
+  {
+    "model": "app.item",
+    "pk": 5,
+    "fields": {
+      "name": "Car(electric)",
+      "description": "Car",
+      "price": 2400,
+      "is_sold": true,
+      "comments": "[]",
+      "department": 3
+    }
+  },
+  {
+    "model": "app.item",
+    "pk": 6,
+    "fields": {
+      "name": "Sink",
+      "description": "",
+      "price": 650,
+      "is_sold": true,
+      "comments": "[]",
+      "department": 3
+    }
+  },
+  {
+    "model": "app.item",
+    "pk": 7,
+    "fields": {
+      "name": "Spoon",
+      "description": "Spoon",
+      "price": 2,
+      "is_sold": false,
+      "comments": "[\"costy\"]",
+      "department": 5
+    }
+  },
+  {
+    "model": "app.item",
+    "pk": 8,
+    "fields": {
+      "name": "Knife",
+      "description": "",
+      "price": 3,
+      "is_sold": true,
+      "comments": "[]",
+      "department": 5
+    }
+  },
+  {
+    "model": "app.item",
+    "pk": 9,
+    "fields": {
+      "name": "Microwave",
+      "description": "",
+      "price": 750,
+      "is_sold": false,
+      "comments": "[\"dunno how to use it\"]",
+      "department": 5
+    }
+  },
+  {
+    "model": "app.item",
+    "pk": 10,
+    "fields": {
+      "name": "Mystery Box",
+      "description": "",
+      "price": 700,
+      "is_sold": false,
+      "comments": "[\"refund!\"]",
+      "department": 4
+    }
+  },
+  {
+    "model": "app.item",
+    "pk": 11,
+    "fields": {
+      "name": "Table",
+      "description": "",
+      "price": 250,
+      "is_sold": true,
+      "comments": "[]",
+      "department": 6
+    }
+  },
+  {
+    "model": "app.item",
+    "pk": 12,
+    "fields": {
+      "name": "Chair",
+      "description": "Chair",
+      "price": 950,
+      "is_sold": false,
+      "comments": "[\"expensive chair\", \"wooden\"]",
+      "department": 6
+    }
+  }
+]

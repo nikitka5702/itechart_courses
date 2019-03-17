@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+
+    <h1><a href="{% url 'index' %}">Shops</a></h1>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Is sold</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in object_list %}
+                <tr>
+                    <th>{{ item }}</th>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.is_sold }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <th colspan="7">No items found.</th>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

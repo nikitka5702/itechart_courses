@@ -32,7 +32,7 @@ class Login extends Component {
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">Chat App</h5>
-              <form>
+              <form autocomplete="off">
                 <div className="row" style={{marginBottom: '5%'}}>
                   <div className="col-8">
                     <input type="text" className="form-control" id="username" name="username" onChange={this.onChange} />
