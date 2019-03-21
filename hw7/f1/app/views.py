@@ -1,11 +1,17 @@
-from django.db.models import Q, F, Count, Value, When, Case, Sum, Max
-from django.views import View
-from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
+import json
+
+from django.db.models import Q, F, Sum, Count
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
+from django.views import View
+from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView, FormView
 
-from app.models import Shop, Department, Item
-from app.forms import ShopChooserForm
+from app.forms import ShopChooserForm, DepartmentPickerForm
+from app.models import Shop, Department, Item, Statistics
+
+
+def info(request):
+    return render(request, 'app/info.html', {})
 
 
 # Create your views here.
@@ -144,3 +150,26 @@ class ItemDelete(DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('shop', kwargs={'pk': self.object.department.shop.pk})
+
+
+class DepartmentComparer(FormView):
+    template_name = 'app/comparer.html'
+    form_class = DepartmentPickerForm
+
+    def form_valid(self, form):
+        dep1, dep2 = form.cleaned_data['first_department'], form.cleaned_data['second_department']
+        if dep1 == dep2:
+            form.add_error('second_department', 'Departments should not be same')
+            return super().form_invalid(form)
+
+        data = []
+
+        for field in [
+            'dep_staff', 'sold_items_cost', 'selling_items_cost',
+            'total_items_cost', 'sold_items_count', 'selling_items_count',
+            'total_count'
+        ]:
+            if field in self.get_form_kwargs()['data']:
+                data.append(field)
+
+        return render(self.request, 'app/compare.html', {'fields': data, 'dep1': dep1, 'dep2': dep2})

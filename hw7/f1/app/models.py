@@ -37,7 +37,7 @@ class Department(models.Model):
 class Item(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, default='')
-    price = models.IntegerField(default=0)
+    price = models.FloatField(default=.0)
     is_sold = models.BooleanField(default=False)
     comments = fields.ArrayField(models.CharField(max_length=255), blank=True, default=list)
     department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='items')
@@ -50,3 +50,14 @@ class Item(models.Model):
 
     def __repr__(self):
         return f"<Item(name='{self.name}', price={self.price}, is_sold={self.is_sold}, department='{self.department.sphere}')>"
+
+
+class Statistics(models.Model):
+    url = models.URLField()
+    hits = models.IntegerField(default=0)
+
+    def hit(self):
+        self.hits += 1
+
+    def __repr__(self):
+        return f"<Statistics(url='{self.url}', hits={self.hits})>"

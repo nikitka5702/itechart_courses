@@ -1,0 +1,11 @@
+{% load shop_tags %}
+
+<tbody>
+    {% for name, d1, d2, leader in data %}
+        <tr>
+            <th>{{ name|capfirst }}</th>
+            <td style="background: {% if leader %}green{% else %}red{% endif %}">{% if d1.is_integer %}{{ d1|to_int }}{% else %}{{ d1|floatformat:2 }}{% endif %}</td>
+            <td style="background: {% if leader %}red{% else %}green{% endif %}">{% if d2.is_integer %}{{ d2|to_int }}{% else %}{{ d2|floatformat:2 }}{% endif %}</td>
+        </tr>
+    {% endfor %}
+</tbody>

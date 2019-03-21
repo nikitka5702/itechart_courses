@@ -5,7 +5,7 @@ from app.views import (
     ShopEdit, ShopDelete, DepartmentCreate,
     DepartmentUpdate, DepartmentDelete, ItemCreate,
     ItemUpdate, ItemDelete, ShopFilterView,
-    ItemFilterView
+    ItemFilterView, DepartmentComparer, info
 )
 
 
@@ -22,5 +22,7 @@ urlpatterns = [
     path('item/<int:pk>/edit', ItemUpdate.as_view(), name='item-update'),
     path('item/<int:pk>/delete', ItemDelete.as_view(), name='item-delete'),
     path('filter/shop/<int:number>/', ShopFilterView.as_view(), name='shop-filter'),
-    path('filter/item/<int:number>/', ItemFilterView.as_view(), name='item-filter')
+    path('filter/item/<int:number>/', ItemFilterView.as_view(), name='item-filter'),
+    path('compare/', DepartmentComparer.as_view(), name='dep-compare'),
+    path('info/', info, name='info')
 ]

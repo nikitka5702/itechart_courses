@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load shop_tags %}
+
 {% block content %}
     <style>
         table, th, td {
@@ -18,7 +20,7 @@
         <tbody>
             {% for shop in object_list %}
                 <tr>
-                    <th><a href="{% url 'shop' shop.pk %}">{{ shop }}</a></th>
+                    <th><a href="{{ shop|to_url }}">{{ shop }}</a></th>
                     <td>
                         <button><a href="{% url 'shop-update' shop.pk %}">Update</a></button>
                     </td>
