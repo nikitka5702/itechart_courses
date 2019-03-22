@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3>Students</h3>
+    <a href="{% url 'student_create' %}">Create student</a>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+                <tr>
+                    <th><a href="{% url 'student' student.pk %}">{{ student }}</a></th>
+                    <td><a href="{% url 'student_edit' student.pk %}">Edit</a></td>
+                    <td><a href="{% url 'student_delete' student.pk %}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3>Teachers</h3>
+    <a href="{% url 'teacher_create' %}">Create teacher</a>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for teacher in teachers %}
+                <tr>
+                    <th><a href="{% url 'teacher' teacher.pk %}">{{ teacher }}</a></th>
+                    <td><a href="{% url 'teacher_edit' teacher.pk %}">Edit</a></td>
+                    <td><a href="{% url 'teacher_delete' teacher.pk %}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
