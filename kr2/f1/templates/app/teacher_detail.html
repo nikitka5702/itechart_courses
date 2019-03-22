@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% load pluralizer %}
+
+{% block content %}
+    <h3>Teacher marks: {{ object.marks.count }}</h3>
+    <h3>Average of marks: {{ avg|floatformat:2 }}</h3>
+    <a href="{% url 'mark_teacher' object.pk %}">Add mark</a>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Field</th>
+                <th scope="col">Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ object.name }}</td>
+            </tr>
+            <tr>
+                <th>Surname</th>
+                <td>{{ object.surname }}</td>
+            </tr>
+            <tr>
+                <th>Position</th>
+                <td>{{ object.position }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Student</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Mark</th>
+                <th scope="col">Created at</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for mark in object.marks.all %}
+                <tr>
+                    <th>{{ mark.student }}</th>
+                    <td>{{ mark.subject }}</td>
+                    <td>{{ mark.mark }} {{ mark.mark|pluralize:"балл,балла,баллов" }}</td>
+                    <td>{{ mark.created_at }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
