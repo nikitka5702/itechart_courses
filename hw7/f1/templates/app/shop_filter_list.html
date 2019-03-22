@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+
+    <h1><a href="{% url 'index' %}">Shops</a></h1>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Staff</th>
+                <th scope="col">Department amount</th>
+                <th scope="col">Staff amount</th>
+                <th scope="col">Items amount</th>
+                <th scope="col">Max Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for shop in object_list %}
+                <tr>
+                    <th><a href="{% url 'shop' shop.pk %}">{{ shop }}</a></th>
+                    <td>{{ shop.address }}</td>
+                    <td>{{ shop.staff_amount }}</td>
+                    <td>{{ shop.departments_count }}</td>
+                    <td>{{ shop.department_staff }}</td>
+                    <td>{{ shop.items_count }}</td>
+                    <td>{{ shop.max_price }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <th colspan="7">No shops found.</th>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

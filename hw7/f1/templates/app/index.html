@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load shop_tags %}
+
+{% block content %}
+    <a href="{% url 'shops' %}">Shops</a>
+
+    {% form_tag form 'Open' %}
+
+    <a href="{% url 'shop-filter' 0 %}">Shop-Filter 1</a>
+    <a href="{% url 'shop-filter' 1 %}">Shop-Filter 2</a>
+    <a href="{% url 'shop-filter' 2 %}">Shop-Filter 3</a>
+    <a href="{% url 'shop-filter' 3 %}">Shop-Filter 4</a><br>
+    <a href="{% url 'item-filter' 0 %}">Item-Filter 1</a>
+    <a href="{% url 'item-filter' 1 %}">Item-Filter 2</a>
+    <a href="{% url 'item-filter' 2 %}">Item-Filter 3</a>
+    <a href="{% url 'item-filter' 3 %}">Item-Filter 4</a>
+    <a href="{% url 'item-filter' 4 %}">Item-Filter 5</a>
+    <a href="{% url 'item-filter' 5 %}">Item-Filter 6</a><br>
+    <a href="{% url 'dep-compare' %}">Compare Departments</a>
+{% endblock %}

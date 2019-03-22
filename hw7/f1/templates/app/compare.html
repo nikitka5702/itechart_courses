@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load shop_tags %}
+
+{% block content %}
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+
+    <h1><a href="{% url 'index' %}">Shops</a></h1>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">{{ dep1|upper }}</th>
+                <th scope="col">{{ dep2|upper }}</th>
+            </tr>
+        </thead>
+        {% get_leader dep1 dep2 fields %}
+    </table>
+{% endblock %}

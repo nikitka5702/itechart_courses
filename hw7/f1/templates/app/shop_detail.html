@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+
+    <h3><a href="{% url 'index' %}">Back</a></h3>
+
+    <h1>{{ object.name }}</h1>
+    <p>
+        Address: {{ object.address }}<br>
+        Staff: {{ object.staff_amount }}<br>
+    </p>
+    <button><a href="{% url 'dep-add' object.pk %}">Add department</a></button>
+    <button><a href="{% url 'item-add' %}">Add item</a></button>
+    {% for department in object.departments.all %}
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="4">Name</th>
+                    <th colspan="2">Actions</th>
+                </tr>
+                <tr>
+                    <th colspan="4"><h3>{{ department }}</h3></th>
+                    <th>
+                        <button><a href="{% url 'dep-update' department.pk %}">Update</a></button>
+                    </th>
+                    <th>
+                        <button><a href="{% url 'dep-delete' department.pk %}">Delete</a></button>
+                    </th>
+                </tr>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Comments</th>
+                    <th colspan="2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in department.items.all %}
+                    <tr{% if item.is_sold %} style="background: silver;"{% endif %}>
+                        <th scope="row">{{ item.name }}</th>
+                        <td>{{ item.description }}</td>
+                        <td>{{ item.price }}</td>
+                        <td>
+                            {% for comment in item.comments %}
+                                {{ comment }}<br>
+                            {% endfor %}
+                        </td>
+                        <td>
+                            <button><a href="{% url 'item-update' item.pk %}">Update</a></button>
+                        </td>
+                        <td>
+                            <button><a href="{% url 'item-delete' item.pk %}">Delete</a></button>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <th colspan="6">No items yet.</th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+    {% endfor %}
+{% endblock %}
