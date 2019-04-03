@@ -16,7 +16,7 @@ class ItemMiddleware:
         s.hit()
         s.save()
 
-        if (url not in ['/admin/', '/info/']) and items == 0:
+        if not any(url.startswith(name) for name in ['/admin', '/info']) and items == 0:
             return redirect('info')
 
         response = self.get_response(request)
