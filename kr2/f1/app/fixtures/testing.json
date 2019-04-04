@@ -1,0 +1,134 @@
+[
+  {
+    "model": "app.student",
+    "pk": 1,
+    "fields": {
+      "name": "Name1",
+      "surname": "Surname",
+      "birth_date": "1996-05-17"
+    }
+  },
+  {
+    "model": "app.student",
+    "pk": 2,
+    "fields": {
+      "name": "Name2",
+      "surname": "Surname",
+      "birth_date": "1998-08-30"
+    }
+  },
+  {
+    "model": "app.student",
+    "pk": 3,
+    "fields": {
+      "name": "Name3",
+      "surname": "Surname",
+      "birth_date": "1992-02-20"
+    }
+  },
+  {
+    "model": "app.student",
+    "pk": 4,
+    "fields": {
+      "name": "Name4",
+      "surname": "Surname",
+      "birth_date": "1995-02-20"
+    }
+  },
+  {
+    "model": "app.student",
+    "pk": 5,
+    "fields": {
+      "name": "Name5",
+      "surname": "Surname",
+      "birth_date": "1999-04-12"
+    }
+  },
+  {
+    "model": "app.student",
+    "pk": 6,
+    "fields": {
+      "name": "Name6",
+      "surname": "Surname",
+      "birth_date": "1995-03-21"
+    }
+  },
+  {
+    "model": "app.teacher",
+    "pk": 1,
+    "fields": {
+      "name": "Name1",
+      "surname": "Surname",
+      "position": "\u0410\u0441\u043f"
+    }
+  },
+  {
+    "model": "app.teacher",
+    "pk": 2,
+    "fields": {
+      "name": "Name2",
+      "surname": "Surname",
+      "position": "\u0410\u0441\u0441"
+    }
+  },
+  {
+    "model": "app.teacher",
+    "pk": 3,
+    "fields": {
+      "name": "Name3",
+      "surname": "Surname",
+      "position": "\u0414\u043e\u0446"
+    }
+  },
+  {
+    "model": "app.teacher",
+    "pk": 4,
+    "fields": {
+      "name": "Name4",
+      "surname": "Surname",
+      "position": "\u041f\u0440\u043e\u0444"
+    }
+  },
+  {
+    "model": "app.teacher",
+    "pk": 5,
+    "fields": {
+      "name": "Name5",
+      "surname": "Surname",
+      "position": "\u041f\u0440\u043e\u0444"
+    }
+  },
+  {
+    "model": "app.mark",
+    "pk": 1,
+    "fields": {
+      "subject": "Subject1",
+      "mark": 5,
+      "created_at": "2019-03-22",
+      "student": 1,
+      "teacher": 1
+    }
+  },
+  {
+    "model": "app.mark",
+    "pk": 2,
+    "fields": {
+      "subject": "Subject2",
+      "mark": 8,
+      "created_at": "2019-03-22",
+      "student": 1,
+      "teacher": 1
+    }
+  },
+  {
+    "model": "app.mark",
+    "pk": 3,
+    "fields": {
+      "subject": "Subject3",
+      "mark": 2,
+      "created_at": "2019-03-22",
+      "student": 1,
+      "teacher": 2
+    }
+  }
+]

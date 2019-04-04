@@ -142,3 +142,6 @@ yarn-debug.log*
 yarn-error.log*
 
 *.yaml
+
+i_img/
+i_border_img/
